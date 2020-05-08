@@ -20,7 +20,7 @@ const ListUserComponent = ({ user }) => {
     const { getUserTickets, getUsers } = user;
     getUserTickets();
     getUsers();
-  }, []);
+  }, [user]);
 
   const deleteUser = (userId) => {
     const { deleteTicket } = user;

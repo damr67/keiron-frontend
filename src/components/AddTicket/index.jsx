@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1)
-  }
-}));
 
 function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
   const [description, setDescritption] = useState('');
@@ -20,8 +13,6 @@ function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
   const handleChange = (event) => {
     setUserId(event.target.value);
   };
-
-  const classes = useStyles();
 
   return (
     <div styles={{ background: 'white' }}>

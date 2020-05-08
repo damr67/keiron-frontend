@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,7 +15,7 @@ const ListUserComponent = ({ user, auth, userId }) => {
     const { getUserTickets, getUsers } = user;
     getUserTickets(userId);
     getUsers();
-  }, []);
+  }, [user, userId]);
 
   const setTicket = (ticketId, id_user, ticket_pedido) => {
     const { setTicket } = user;

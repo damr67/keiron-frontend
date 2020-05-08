@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -102,10 +102,6 @@ function Dashboard({ auth, userIdm, history }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
-  useEffect(() => {
-    const { user } = auth;
-  }, []);
-
   const handleLogout = () => {
     const { logout } = auth;
     logout();
@@ -118,7 +114,6 @@ function Dashboard({ auth, userIdm, history }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>

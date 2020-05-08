@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import 'mobx-react-lite/batchingForReactDom';
 import {
@@ -58,7 +58,6 @@ function RegisterContainer({ auth, history }) {
   const [fullname, setFullname] = useState('');
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(auth.error);
   const [snackbar, setSnackbar] = useState(false);
 
   const handleFullname = (e) => {
