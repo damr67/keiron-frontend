@@ -75,13 +75,13 @@ class UserStore {
       });
   };
 
-  setTicket = (id, ticket_pedido) => {
+  setTicket = (id, id_user, ticket_pedido) => {
     this.loading = true;
     return user
       .setTicket(`?id=${id}&ticket_pedido=${ticket_pedido}`)
       .then((res) => {
         this.loading = false;
-        this.getUserTickets();
+        this.getUserTickets(id_user);
       })
       .catch((err) => {
         this.loading = false;

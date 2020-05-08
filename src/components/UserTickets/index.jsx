@@ -17,9 +17,9 @@ const ListUserComponent = ({ user, auth, userId }) => {
     getUsers();
   }, []);
 
-  const setTicket = (ticketId, ticket_pedido) => {
+  const setTicket = (ticketId, id_user, ticket_pedido) => {
     const { setTicket } = user;
-    setTicket(ticketId, ticket_pedido === 1 ? 0 : 1);
+    setTicket(ticketId, id_user, ticket_pedido === 1 ? 0 : 1);
   };
 
   return (
@@ -46,7 +46,9 @@ const ListUserComponent = ({ user, auth, userId }) => {
                 </TableCell>
                 <TableCell align="right">
                   <Button
-                    onClick={() => setTicket(ticket.id, ticket.ticket_pedido)}
+                    onClick={() =>
+                      setTicket(ticket.id, ticket.id_user, ticket.ticket_pedido)
+                    }
                   >
                     {ticket.ticket_pedido === 1 ? <ClearIcon /> : <DoneIcon />}
                   </Button>
