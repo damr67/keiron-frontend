@@ -50,8 +50,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginContainer(props) {
-  const classes = useStyles();
-
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -62,6 +60,8 @@ function LoginContainer(props) {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
