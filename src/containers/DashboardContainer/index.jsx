@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { observer, inject } from 'mobx-react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,9 +13,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems } from '../../components/listItems';
 import Tickets from '../../components/Tickets';
+import UserTickets from '../../components/UserTickets';
 
 const drawerWidth = 240;
 
@@ -96,10 +98,21 @@ const useStyles = makeStyles((theme) => ({
     height: 240
   }
 }));
-
-export default function Dashboard() {
+function Dashboard({ auth, userIdm, history }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+
+  useEffect(() => {
+    const { user } = auth;
+    console.log('INSIDE DASHBOARD', user[0].id_user);
+  }, []);
+
+  const handleLogout = () => {
+    const { logout } = auth;
+    logout();
+    history.push('/login');
+  };
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -137,9 +150,9 @@ export default function Dashboard() {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
+          <IconButton color="inherit" onClick={handleLogout}>
+            <Badge color="secondary">
+              <ExitToAppIcon />
             </Badge>
           </IconButton>
         </Toolbar>
@@ -160,8 +173,14 @@ export default function Dashboard() {
         <List>{mainListItems}</List>
       </Drawer>
       <main>
-        <Tickets />
+        {auth.user[0].id_tipouser === 2 ? (
+          <Tickets />
+        ) : (
+          <UserTickets userId={auth.user[0].id_user} />
+        )}
       </main>
     </div>
   );
 }
+
+export default inject('auth')(observer(Dashboard));

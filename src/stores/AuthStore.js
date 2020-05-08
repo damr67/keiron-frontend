@@ -10,11 +10,9 @@ export type UserStoreType = {
 class AuthStore {
   isAuthenticated = false;
 
-  tipo = 'user';
-
   error = false;
 
-  user = {};
+  user = [];
 
   login = (mail, pass) => {
     return auth
@@ -26,7 +24,6 @@ class AuthStore {
         } else {
           this.user = res.data;
           this.isAuthenticated = true;
-          this.tipo = res.data[0] === 1 ? 'admin' : 'user';
         }
       })
       .catch((err) => {
@@ -57,7 +54,8 @@ decorate(AuthStore, {
   isAuthenticated: observable,
   error: observable,
   login: action,
-  logout: action
+  logout: action,
+  user: observable
 });
 
 export default new AuthStore();

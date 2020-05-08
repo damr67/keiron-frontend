@@ -31,18 +31,32 @@ class UserStore {
       });
   };
 
-  getUserTickets = () => {
+  getUserTickets = (id_user = '') => {
     this.loading = true;
-    return user
-      .getUserTickets()
-      .then((res) => {
-        this.loading = false;
-        this.userTickets = res.data;
-      })
-      .catch((err) => {
-        this.loading = false;
-        this.error = err;
-      });
+
+    if (id_user) {
+      return user
+        .getTicketsPerUser(`?id_user=${id_user}`)
+        .then((res) => {
+          this.loading = false;
+          this.userTickets = res.data;
+        })
+        .catch((err) => {
+          this.loading = false;
+          this.error = err;
+        });
+    } else {
+      return user
+        .getUserTickets()
+        .then((res) => {
+          this.loading = false;
+          this.userTickets = res.data;
+        })
+        .catch((err) => {
+          this.loading = false;
+          this.error = err;
+        });
+    }
   };
 
   addTicket = (id_user, description, ticket_pedido) => {
@@ -51,6 +65,20 @@ class UserStore {
       .addTicket(
         `?id_user=${id_user}&description=${description}&ticket_pedido=${ticket_pedido}`
       )
+      .then((res) => {
+        this.loading = false;
+        this.getUserTickets();
+      })
+      .catch((err) => {
+        this.loading = false;
+        this.error = err;
+      });
+  };
+
+  setTicket = (id, ticket_pedido) => {
+    this.loading = true;
+    return user
+      .setTicket(`?id=${id}&ticket_pedido=${ticket_pedido}`)
       .then((res) => {
         this.loading = false;
         this.getUserTickets();
@@ -108,7 +136,8 @@ decorate(UserStore, {
   getUserTickets: action,
   addTicket: action,
   updateTicket: action,
-  deleteTicket: action
+  deleteTicket: action,
+  setTicket: action
 });
 
 export default new UserStore();

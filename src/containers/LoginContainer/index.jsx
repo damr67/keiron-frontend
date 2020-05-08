@@ -99,10 +99,6 @@ function LoginContainer(props) {
           value={password}
           onChange={handlePassword}
         />
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
         <Button
           type="submit"
           fullWidth
