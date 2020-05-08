@@ -3,25 +3,25 @@ import user from '../api/user';
 
 export type UserStoreType = {
   error: any,
-  users: Array<Object>,
+  userTickets: Array<Object>,
   loading: boolean,
-  getUsers: () => void
+  getUserTickets: () => void
 };
 
 class UserStore {
-  users = [];
+  userTickets = [];
 
   loading = false;
 
   error = {};
 
-  getUsers = () => {
+  getUserTickets = () => {
     this.loading = true;
     return user
-      .getUsers()
+      .getUserTickets()
       .then((res) => {
         this.loading = false;
-        this.users = res;
+        this.userTickets = res.data;
       })
       .catch((err) => {
         this.loading = false;
@@ -31,10 +31,10 @@ class UserStore {
 }
 
 decorate(UserStore, {
-  user: observable,
+  userTickets: observable,
   loading: observable,
   error: observable,
-  getUsers: action
+  getUserTickets: action
 });
 
 export default new UserStore();

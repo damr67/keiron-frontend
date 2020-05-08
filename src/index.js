@@ -11,7 +11,12 @@ import PageNotFound from './containers/PageNotFound';
 
 import store from './stores';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +24,7 @@ ReactDOM.render(
       <Router>
         <App>
           <Switch>
+            <Redirect exact path="/" to="/login" />
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
             <Route path="/user" component={UserContainer} />

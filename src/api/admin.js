@@ -1,8 +1,8 @@
 import base from './base';
 
-class User {
-  getUserTickets = (params) =>
+class Admin {
+  getAllTickets = (params) =>
     base.get('/tickets', params).then(({ data }) => data);
 }
 
-export default new User();
+export default new Admin();
