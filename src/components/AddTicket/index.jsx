@@ -56,6 +56,7 @@ function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
         color="primary"
         onClick={() => saveNew(description, userId)}
         disabled={description.length < 1}
+        style={{ marginLeft: '35px' }}
       >
         Add
       </Button>
@@ -66,6 +67,7 @@ function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
           color="primary"
           onClick={() => saveEdit(description, editId, usrId)}
           disabled={description.length < 1}
+          style={{ marginLeft: '35px' }}
         >
           Save Edit
           {console.log(description, editId, usrId)}

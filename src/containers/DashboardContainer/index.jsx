@@ -172,7 +172,7 @@ function Dashboard({ auth, userIdm, history }) {
         <Divider />
         <List>{mainListItems}</List>
       </Drawer>
-      <main>
+      <main style={{ padding: '0 80px' }}>
         {auth.user[0].id_tipouser === 2 ? (
           <Tickets />
         ) : (
