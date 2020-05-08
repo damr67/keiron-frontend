@@ -12,7 +12,7 @@ import {
   Typography,
   Container
 } from '@material-ui/core';
-import { LockOutlinedIcon } from '@material-ui/icons';
+import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
 function Copyright() {
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SignUp() {
+export default function RegisterContainer() {
   const classes = useStyles();
 
   return (
@@ -63,27 +63,15 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="fullName"
+                label="fullName"
+                name="FullName"
+                autoComplete="Full Name"
               />
             </Grid>
             <Grid item xs={12}>
@@ -109,12 +97,6 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -127,7 +109,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
