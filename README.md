@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### REQUISITOS
+## 1. MySQL DATABASE
+Debe Instalar previamente MySQL Database, puede user XAMPP si desea. Y posteriormente realizar la importacion de la base de datos con el script que se encuentra en este proyecto. 
 
-In the project directory, you can run:
+`keiron_app.sql`
 
-### `npm start`
+Es importante hace enfasis que la base de datos debera llevar el nombre `keiron_app` de forma tal que el backend pueda hacer conexion con la misma. Ya que fue configurado para una base de datos con dicho nombre.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Una vez importada la base datos de forma satisfactoria, se procece a la instalacion del proyecto Backend.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2.[Keiron Backend](https://github.com/damr67/keiron-backend)
+Debe instalar la version del backend localmente. `keiron-backend`. Para ellos debe clonar el repositorio `keiron-backend`, cuyo link se encuentra en el titulo de este paso.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Antes de Iniciar
+Se requiere de Node Js
+### `npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Iniciar Backend Localmente
+### `keiron-backend-$ npm run start`
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 3.[Keiron Frontend](https://github.com/damr67/keiron-frontend)
+Debe instalar la version del frontend localmente. `keiron-frontend`. Para ellos debe clonar el repositorio `keiron-frontend`, cuyo link se encuentra en el titulo de este paso. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Antes de Iniciar
+Se requiere de Node Js
+### `npm install`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Antes de Iniciar
+Se requiere de Node Js
+### `npm install`
 
-## Learn More
+## Para Iniciar Localmente
+### `npm run start`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### IMPORTANTE 
+Los 3 servidores requieren estar activos en el mismo momento para que los datos de la aplicacion pueden fluir de forma Correcta
+- Server Base de Datos Mysql
+- Server Keiron Backend
+- Server Keiron Frontend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### Description de Aplicativo
+## Test:
+- Debes crear una app en React + Node + MySql en la cual se pueda registrar y logear usuario (sin recuperación de contraseña) y en la que existan dos perfiles de usuario: Administrador y Usuario.
+- El perfil administrador solo tiene una tabla para gestionar tickets (Crud) en donde se los puede asignar a usuarios.
+- El perfil de usuario solo posee una lista de tickets asignados a el y un boton para pedirlos (setear el ticket_pedido).
+- El login de usuarios debe discriminar y redireccionar según su perfil.
+- Debes subir el proyecto a git y enviarnos las instrucciones para levantar el proyecto (incluye el script de SQL en el proyecto).
+- El proyecto cuenta con 3 Tablas:
+1. usuarios: id, id_tipouser, nombre, mail, pass
+2. ticket: id , id_user , ticket_pedido
+3. tipo_usuario: id, nombre
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Login
+Acceder a http://localhost:3000/login
 
-### Making a Progressive Web App
+Cuentas Creadas
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+|email|password|
+|:-------:|:--------:|
+| admin@gmail.com| admin|
+|admin2@gmail.com| admin|
+| user@gmail.com | user|
+|user1@gmail.com| user|
+|user2@gmail.com| user|
+|user3@gmail.com| user|
+|user4@gmail.com| user|
 
-### Advanced Configuration
+# Register
+Acceder a http://localhost:3000/register
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
