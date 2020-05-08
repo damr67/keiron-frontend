@@ -69,6 +69,7 @@ Cuentas Creadas
 |:-------:|:--------:|
 | admin@gmail.com| admin|
 |admin2@gmail.com| admin|
+| keiron@keiron.com| keiron|
 | user@gmail.com | user|
 |user1@gmail.com| user|
 |user2@gmail.com| user|
