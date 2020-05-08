@@ -10,6 +10,8 @@ export type UserStoreType = {
 class AuthStore {
   isAuthenticated = false;
 
+  tipo = 'user';
+
   error = false;
 
   user = {};
@@ -24,8 +26,8 @@ class AuthStore {
         } else {
           this.user = res.data;
           this.isAuthenticated = true;
+          this.tipo = res.data[0] === 1 ? 'admin' : 'user';
         }
-        // this.isAuthenticated = true;
       })
       .catch((err) => {
         console.log('Error on Authentication');

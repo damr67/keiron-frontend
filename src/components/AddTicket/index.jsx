@@ -1,0 +1,83 @@
+import React, { useState, useEffect } from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { observer, inject } from 'mobx-react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1)
+  }
+}));
+
+function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
+  const [description, setDescritption] = useState('');
+  const [userId, setUserId] = useState(0);
+
+  const handleChange = (event) => {
+    setUserId(event.target.value);
+  };
+
+  const classes = useStyles();
+
+  return (
+    <div styles={{ background: 'white' }}>
+      <Typography variant="h4" style={style}>
+        {isEdit ? 'Edit Entry' : 'Add New Ticket'}
+      </Typography>
+      <TextField
+        type="text"
+        placeholder="Description"
+        fullWidth
+        margin="normal"
+        name="description"
+        value={description}
+        onChange={(e) => setDescritption(e.target.value)}
+      />
+      <Select
+        native
+        value={userId}
+        onChange={handleChange}
+        input={<Input id="demo-dialog-native" />}
+      >
+        {users &&
+          users.map((user) => (
+            <option value={user.id_user} key={user.id_user}>
+              {user.nombre}
+            </option>
+          ))}
+      </Select>
+
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => saveNew(description, userId)}
+        disabled={description.length < 1}
+      >
+        Add New
+      </Button>
+
+      {isEdit && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => saveEdit(description, editId, usrId)}
+          disabled={description.length < 1}
+        >
+          Save Edit
+          {console.log(description, editId, usrId)}
+        </Button>
+      )}
+    </div>
+  );
+}
+
+const style = {
+  display: 'flex',
+  justifyContent: 'center'
+};
+
+export default inject('user')(observer(AddTicket));

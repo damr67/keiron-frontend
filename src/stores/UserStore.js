@@ -11,9 +11,25 @@ export type UserStoreType = {
 class UserStore {
   userTickets = [];
 
+  users = [];
+
   loading = false;
 
   error = {};
+
+  getUsers = () => {
+    this.loading = true;
+    return user
+      .getUsers()
+      .then((res) => {
+        this.loading = false;
+        this.users = res.data;
+      })
+      .catch((err) => {
+        this.loading = false;
+        this.error = err;
+      });
+  };
 
   getUserTickets = () => {
     this.loading = true;
@@ -28,13 +44,71 @@ class UserStore {
         this.error = err;
       });
   };
+
+  addTicket = (id_user, description, ticket_pedido) => {
+    this.loading = true;
+    return user
+      .addTicket(
+        `?id_user=${id_user}&description=${description}&ticket_pedido=${ticket_pedido}`
+      )
+      .then((res) => {
+        this.loading = false;
+        this.getUserTickets();
+      })
+      .catch((err) => {
+        this.loading = false;
+        this.error = err;
+      });
+  };
+
+  updateTicket = (id, id_user, description, ticket_pedido) => {
+    this.loading = true;
+    console.log(id, id_user, description, ticket_pedido);
+    console.log(
+      `?id=${id}&id_user=${id_user}&description=${description}&ticket_pedido=${ticket_pedido}`
+    );
+    return user
+      .updateTicket(
+        `?id=${id}&id_user=${id_user}&description=${description}&ticket_pedido=${ticket_pedido}`
+      )
+      .then((res) => {
+        this.loading = false;
+        console.log(res);
+        this.getUserTickets();
+      })
+      .catch((err) => {
+        this.loading = false;
+        console.log(err);
+        this.error = err;
+      });
+  };
+
+  deleteTicket = (id) => {
+    this.loading = true;
+    console.log(id);
+    return user
+      .deleteTicket(`?id=${id}`)
+      .then((res) => {
+        this.loading = false;
+        this.getUserTickets();
+      })
+      .catch((err) => {
+        this.loading = false;
+        console.log(err);
+        this.error = err;
+      });
+  };
 }
 
 decorate(UserStore, {
   userTickets: observable,
+  users: observable,
   loading: observable,
   error: observable,
-  getUserTickets: action
+  getUserTickets: action,
+  addTicket: action,
+  updateTicket: action,
+  deleteTicket: action
 });
 
 export default new UserStore();
