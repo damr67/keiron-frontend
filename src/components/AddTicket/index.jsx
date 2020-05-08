@@ -26,7 +26,7 @@ function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
   return (
     <div styles={{ background: 'white' }}>
       <Typography variant="h4" style={style}>
-        {isEdit ? 'Edit Entry' : 'Add New Ticket'}
+        {isEdit ? 'Edit Selected Ticket' : 'Add New Ticket'}
       </Typography>
       <TextField
         type="text"
@@ -57,7 +57,7 @@ function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
         onClick={() => saveNew(description, userId)}
         disabled={description.length < 1}
       >
-        Add New
+        Add
       </Button>
 
       {isEdit && (

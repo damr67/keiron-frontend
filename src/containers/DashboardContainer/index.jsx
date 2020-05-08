@@ -104,7 +104,6 @@ function Dashboard({ auth, userIdm, history }) {
 
   useEffect(() => {
     const { user } = auth;
-    console.log('INSIDE DASHBOARD', user[0].id_user);
   }, []);
 
   const handleLogout = () => {
@@ -148,7 +147,8 @@ function Dashboard({ auth, userIdm, history }) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Welcome {auth.user[0].nombre} -{' '}
+            {auth.user[0].id_tipouser === 2 ? 'Admin' : 'User'}
           </Typography>
           <IconButton color="inherit" onClick={handleLogout}>
             <Badge color="secondary">

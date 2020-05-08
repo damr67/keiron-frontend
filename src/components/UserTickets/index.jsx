@@ -25,7 +25,7 @@ const ListUserComponent = ({ user, auth, userId }) => {
   return (
     <div style={{ margin: '100px 0' }}>
       <Typography variant="h4" style={style}>
-        User Details
+        Your Tickets
       </Typography>
 
       <Table>

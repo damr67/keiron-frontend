@@ -56,7 +56,7 @@ const ListUserComponent = ({ user }) => {
       />
 
       <Typography variant="h4" style={style}>
-        User Details
+        All Tickets
       </Typography>
 
       <Table>
