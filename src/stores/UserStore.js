@@ -1,22 +1,19 @@
 import { observable, action, decorate } from 'mobx';
 import user from '../api/user';
-
-export type UserStoreType = {
-  error: any,
-  userTickets: Array<Object>,
-  loading: boolean,
-  getUserTickets: () => void
-};
-
 class UserStore {
+  // Observable
   userTickets = [];
 
+  // Observable
   users = [];
 
+  //Observable
   loading = false;
 
+  // Observable
   error = {};
 
+  // Action
   getUsers = () => {
     this.loading = true;
     return user
@@ -31,6 +28,7 @@ class UserStore {
       });
   };
 
+  // Action
   getUserTickets = (id_user = '') => {
     this.loading = true;
 
@@ -59,6 +57,7 @@ class UserStore {
     }
   };
 
+  // Action
   addTicket = (id_user, description, ticket_pedido) => {
     this.loading = true;
     return user
@@ -75,6 +74,7 @@ class UserStore {
       });
   };
 
+  // Action
   setTicket = (id, id_user, ticket_pedido) => {
     this.loading = true;
     return user
@@ -89,31 +89,26 @@ class UserStore {
       });
   };
 
+  // Action
   updateTicket = (id, id_user, description, ticket_pedido) => {
     this.loading = true;
-    console.log(id, id_user, description, ticket_pedido);
-    console.log(
-      `?id=${id}&id_user=${id_user}&description=${description}&ticket_pedido=${ticket_pedido}`
-    );
     return user
       .updateTicket(
         `?id=${id}&id_user=${id_user}&description=${description}&ticket_pedido=${ticket_pedido}`
       )
       .then((res) => {
         this.loading = false;
-        console.log(res);
         this.getUserTickets();
       })
       .catch((err) => {
         this.loading = false;
-        console.log(err);
         this.error = err;
       });
   };
 
+  // Action
   deleteTicket = (id) => {
     this.loading = true;
-    console.log(id);
     return user
       .deleteTicket(`?id=${id}`)
       .then((res) => {
@@ -122,7 +117,6 @@ class UserStore {
       })
       .catch((err) => {
         this.loading = false;
-        console.log(err);
         this.error = err;
       });
   };

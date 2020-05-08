@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
+
+//Void Warning errors
 import 'mobx-react-lite/batchingForReactDom';
+
 import {
   Avatar,
   Button,
@@ -13,8 +16,10 @@ import {
   Container,
   Snackbar
 } from '@material-ui/core';
+
 import MuiAlert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 function Alert(props) {
@@ -60,17 +65,11 @@ function RegisterContainer({ auth, history }) {
   const [password, setPassword] = useState('');
   const [snackbar, setSnackbar] = useState(false);
 
-  const handleFullname = (e) => {
-    setFullname(e.target.value);
-  };
+  const handleFullname = (e) => setFullname(e.target.value);
 
-  const handleUser = (e) => {
-    setUser(e.target.value);
-  };
+  const handleUser = (e) => setUser(e.target.value);
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const handlePassword = (e) => setPassword(e.target.value);
 
   const handleLogin = () => {
     auth.register(fullname, user, password);

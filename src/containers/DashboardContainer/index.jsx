@@ -1,22 +1,27 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 import { mainListItems } from '../../components/listItems';
 import Tickets from '../../components/Tickets';
 import UserTickets from '../../components/UserTickets';
+
+import {
+  CssBaseline,
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  Badge,
+  IconButton
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const drawerWidth = 240;
 
@@ -98,8 +103,9 @@ const useStyles = makeStyles((theme) => ({
     height: 240
   }
 }));
+
+// Dashboard Container
 function Dashboard({ auth, userIdm, history }) {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   const handleLogout = () => {
@@ -108,12 +114,10 @@ function Dashboard({ auth, userIdm, history }) {
     history.push('/login');
   };
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
+
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -167,6 +171,8 @@ function Dashboard({ auth, userIdm, history }) {
         <Divider />
         <List>{mainListItems}</List>
       </Drawer>
+
+      {/* Main App */}
       <main style={{ padding: '0 80px' }}>
         {auth.user[0].id_tipouser === 2 ? (
           <Tickets />

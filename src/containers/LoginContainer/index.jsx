@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
+
 import {
   Avatar,
   Button,
@@ -11,6 +12,7 @@ import {
   Typography,
   Container
 } from '@material-ui/core';
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -47,17 +49,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// Login Container
 function LoginContainer(props) {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleUser = (e) => {
-    setUser(e.target.value);
-  };
+  const handleUser = (e) => setUser(e.target.value);
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const handlePassword = (e) => setPassword(e.target.value);
 
   const classes = useStyles();
 
@@ -68,9 +67,11 @@ function LoginContainer(props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+
         <Typography component="h1" variant="h5">
-          Sign in
+          Log In
         </Typography>
+
         <TextField
           variant="outlined"
           margin="normal"
@@ -111,6 +112,7 @@ function LoginContainer(props) {
         >
           Log In
         </Button>
+
         <Grid container>
           <Grid item>
             <Link href="/register" variant="body2">

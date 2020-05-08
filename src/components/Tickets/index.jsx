@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ListUserComponent = ({ user }) => {
   const [editId, setEditId] = useState(0);
@@ -68,6 +69,7 @@ const ListUserComponent = ({ user }) => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {user.loading && <CircularProgress />}
           {!user.loading &&
             user.userTickets.map((ticket) => (
               <TableRow key={ticket.id}>

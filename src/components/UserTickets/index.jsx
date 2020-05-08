@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ListUserComponent = ({ user, auth, userId }) => {
   useEffect(() => {
@@ -37,6 +38,7 @@ const ListUserComponent = ({ user, auth, userId }) => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {user.loading && <CircularProgress />}
           {!user.loading &&
             user.userTickets.map((ticket) => (
               <TableRow key={ticket.id}>

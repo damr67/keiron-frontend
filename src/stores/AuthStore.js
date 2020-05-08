@@ -15,6 +15,7 @@ class AuthStore {
   user = [];
 
   login = (mail, pass) => {
+    this.error = false;
     return auth
       .login(`?mail=${mail}&pass=${pass}`)
       .then((res) => {
@@ -27,7 +28,7 @@ class AuthStore {
         }
       })
       .catch((err) => {
-        console.log('Error on Authentication');
+        this.error = true;
       });
   };
 
@@ -40,7 +41,6 @@ class AuthStore {
         } else {
           this.error = false;
         }
-        console.log(this.error);
       })
       .catch((err) => {
         this.error = true;

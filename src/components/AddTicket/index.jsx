@@ -61,7 +61,6 @@ function AddTicket({ user, users, saveNew, saveEdit, isEdit, editId, usrId }) {
           style={{ marginLeft: '35px' }}
         >
           Save Edit
-          {console.log(description, editId, usrId)}
         </Button>
       )}
     </div>
