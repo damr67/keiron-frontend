@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { observer, inject } from 'mobx-react';
 import {
   Avatar,
   Button,
@@ -48,8 +49,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function LoginContainer() {
+function LoginContainer(props) {
   const classes = useStyles();
+
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUser = (e) => {
+    setUser(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,50 +73,57 @@ export default function LoginContainer() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          autoFocus
+          value={user}
+          onChange={handleUser}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={handlePassword}
+        />
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={() =>
+            props.auth
+              .login(user, password)
+              .then(() => props.history.push('/app'))
+          }
+        >
+          Log In
+        </Button>
+        <Grid container>
+          <Grid item>
+            <Link href="/register" variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
           </Grid>
-        </form>
+        </Grid>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -112,3 +131,5 @@ export default function LoginContainer() {
     </Container>
   );
 }
+
+export default inject('auth')(observer(LoginContainer));

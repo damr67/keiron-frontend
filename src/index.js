@@ -1,22 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { Provider } from 'mobx-react';
-import App from './App';
-import LoginContainer from './containers/LoginContainer';
-import RegisterContainer from './containers/RegisterContainer';
-import UserContainer from './containers/UserContainer';
-import AdminContainer from './containers/AdminContainer';
-import PageNotFound from './containers/PageNotFound';
-
-import store from './stores';
-
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect
 } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import './index.css';
+import { Provider } from 'mobx-react';
+import App from './App';
+import LoginContainer from './containers/LoginContainer';
+import RegisterContainer from './containers/RegisterContainer';
+import DashboardContainer from './containers/DashboardContainer';
+import PageNotFound from './containers/PageNotFound';
+
+import store from './stores';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,11 +23,9 @@ ReactDOM.render(
       <Router>
         <App>
           <Switch>
-            <Redirect exact path="/" to="/login" />
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
-            <Route path="/user" component={UserContainer} />
-            <Route path="/admin" component={AdminContainer} />
+            <ProtectedRoute component={DashboardContainer} />
             <Route component={PageNotFound} />
           </Switch>
         </App>
