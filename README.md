@@ -19,6 +19,7 @@ Tener Instalado MySQL Database, puede user XAMPP si desea.
 
 
 ## Login
+Acceder a http://localhost:3000/login
 
 Cuentas Creadas
 
@@ -31,6 +32,9 @@ Cuentas Creadas
 |user2@gmail.com| user|
 |user3@gmail.com| user|
 |user4@gmail.com| user|
+
+# Register
+Acceder a http://localhost:3000/register
 
 
 
